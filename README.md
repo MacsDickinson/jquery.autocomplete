@@ -28,4 +28,4 @@ $(function() {
 ```
 
 View a basic demo here:
-http://jsbin.com/afamum/2/edit
+http://jsbin.com/afamum/3/edit
