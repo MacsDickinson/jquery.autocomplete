@@ -26,3 +26,6 @@ $(function() {
     'selectedclass': 'your-selected-class'});
 });
 ```
+
+View a basic demo here:
+http://jsbin.com/afamum/2/edit
