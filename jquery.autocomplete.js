@@ -59,9 +59,9 @@
             }
             else {
                 $(this).parent().children().removeClass(select);
-                $(this).parent().children().removeClass(select);
+                $(this).parent().children().addClass(listitem);
                 $(this).addClass(select);
-                $(this).addClass(select);
+				$(this).removeClass(listitem);
             }
         };
         var sunkMyBattleShip = function(element, x, y) {
@@ -95,6 +95,7 @@
                     if ($('.' + result + '[for="' + f + '"] .' + select).length === 1) {
                         var $sel = $('.' + result + '[for="' + f + '"]').children('.' + select);
                         $sel.removeClass(select);
+                        $sel.addClass(listitem);
                         var $nxt;
                         if (e.keyCode === 38) {
                             if ($sel.prev().length > 0) {
@@ -113,6 +114,7 @@
                             }
                         }
                         $nxt.addClass(select);
+						$nxt.removeClass(listitem);
                         var $res = $('.' + result + '[for="' + f + '"]');
                         var itemheight = parseInt($nxt.css('height'), 10);
                         var scrolltop = $res.scrollTop();
@@ -126,6 +128,7 @@
                     }
                     else {
                         $('.' + result + '[for="' + f + '"]').children(':first').addClass(select);
+						$('.' + result + '[for="' + f + '"]').children(':first').removeClass(listitem);
                     }
                 }
                 else if (e.keyCode === 13) {
@@ -160,7 +163,9 @@
             });
             $r.children().on('click', function() {
                 $(this).parent().children().removeClass(select);
+				$(this).parent().children().addClass(listitem);
                 $(this).addClass(select);
+				$(this).removeClass(listitem);
             });
             $r.appendTo($d);
             $(document).click(function(e) {
