@@ -148,11 +148,11 @@
             var $r = $('<ul/>', { 'class': result,
                 'for': id
             });
+            $r.css('display', 'none');
             $r.css('width', parseInt($in.css('width'), 10) + parseInt($in.css('padding-left'), 10) + parseInt($in.css('padding-right'), 10));
             $r.css('left', $in.position().left);
             $r.css('margin-top', parseInt($in.css('margin-bottom'), 10) * -1);
             $r.css('position', 'absolute');
-            $r.css('padding', $in.css('padding'));
             $r.css('margin-left', $in.css('margin-left'));
             $r.css('margin-right', $in.css('margin-right'));
             $r.children().on('load', function() {
