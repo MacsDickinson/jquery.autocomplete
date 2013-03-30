@@ -144,7 +144,7 @@
                            'for': id
                           });
       $r.css('width', $in.css('width'));
-      $r.css('padding', $in.css('padding'));
+      $r.css('padding-left', 0);
       $r.css('margin-left', $in.css('margin-left'));
       $r.css('margin-right', $in.css('margin-right'));
       $r.css('margin-top', parseInt($in.css('margin-bottom'), 10)*-1);
