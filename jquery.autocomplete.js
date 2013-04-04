@@ -1,4 +1,4 @@
-﻿(function($) {
+﻿﻿(function($) {
     $.fn.autocomplete = function(options) {
         var settings = $.extend({
             'containerclass': 'jquery-autocomplete-container',
@@ -30,7 +30,7 @@
                 if (mchs.length > 0) {
                     for (var mch in mchs) {
                         var $li = $('<li/>', {
-                            value: mchs[mch].val,
+                            'data-value': mchs[mch].val,
                             'class': listitem,
                             text: mchs[mch].text
                         });
@@ -53,9 +53,12 @@
 
         var liClicked = function() {
             if ($(this).hasClass(select)) {
-                $(this).parent().prev().val($(this).text());
-                $(this).parent().prev().attr('value', $(this).attr('value'));
-                $(this).parent().hide();
+                var $parent = $(this).parent();
+                var selectedText = $(this).text();
+                var selectedVal = $(this).attr('data-value');
+                $parent.prev().val(selectedText);
+                $('#' + $parent.attr('for')).val(selectedVal);
+                $parent.hide();
             }
             else {
                 $(this).parent().children().removeClass(select);
@@ -114,7 +117,7 @@
                             }
                         }
                         $nxt.addClass(select);
-						$nxt.removeClass(listitem);
+                        $nxt.removeClass(listitem);
                         var $res = $('.' + result + '[for="' + f + '"]');
                         var itemheight = parseInt($nxt.css('height'), 10);
                         var scrolltop = $res.scrollTop();
@@ -128,12 +131,15 @@
                     }
                     else {
                         $('.' + result + '[for="' + f + '"]').children(':first').addClass(select);
-						$('.' + result + '[for="' + f + '"]').children(':first').removeClass(listitem);
+                        $('.' + result + '[for="' + f + '"]').children(':first').removeClass(listitem);
                     }
                 }
                 else if (e.keyCode === 13) {
                     if ($('.' + result + '[for="' + f + '"] .' + select).length === 1) {
-                        $(this).val($('.' + result + '[for="' + f + '"] .' + select).text());
+                        var selectedText = $('.' + result + '[for="' + f + '"] .' + select).text();
+                        var selectedVal = $('.' + result + '[for="' + f + '"] .' + select).attr('data-value');
+                        $(this).val(selectedText);
+                        $('#' + f).val(selectedVal);
                         $('.' + result + '[for="' + f + '"]').hide();
                     }
                 }
@@ -151,7 +157,7 @@
             var $r = $('<ul/>', { 'class': result,
                 'for': id
             });
-      $r.css('padding-left', 0);
+            $r.css('padding-left', 0);
             $r.css('width', parseInt($in.css('width'), 10) + parseInt($in.css('padding-left'), 10) + parseInt($in.css('padding-right'), 10));
             $r.css('left', $in.position().left);
             $r.css('margin-top', parseInt($in.css('margin-bottom'), 10) * -1);
